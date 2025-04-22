@@ -1,0 +1,104 @@
+maven 
+
+its a build too1.
+main file is POM.XML (project object model & Extensible markup language)
+POM.XML will have entire information of project.
+it is used to create artifact (war, jar, ear)
+It is mostly used for java-based projects.
+It was initially released on 13 July 2004.
+Maven is written in java (1.8.0)
+
+RAW: .java  (we cant use it)
+.java -- > compile -- > .class -- > .jar -- > package -- > .war
+
+.class 	: which can be executable
+.jar    : group of .class files (works for backend)
+.war	: it has frontend and backend code (FE: HTML, CSS, JS & BE: JAVA)
+libs	: its a pre defined packages used for code.
+
+ARTIFACTS: its the final product.
+JAR = JAVA ARCHIVE
+WAR = WEB ARCHIVE 
+EAR = ENTERPRISE ARCHIVE
+
+ARCHITECTURE:
+
+SETUP: CREATE EC2
+yum install git java-1.8.0-openjdk maven tree -y
+git clone https://github.com/devopsbyraham/jenkins-java-project.git
+cd jenkins-java-project.git
+
+PLUGIN: its a small software which automates our work.
+with the plugins we can use tools without installing them.
+
+GOAL: its a command used to perfrom task.
+MAVEN follows a lifecycle
+
+mvn compile	: to compile the source code
+mvn test	: to test the code
+mvn package	: to create artifact (project directory)
+mvn install	: to create artifact (maven home dir .m2)
+mvn clean packge: to perform entire goals 
+mvn clean	: to delete target
+
+
+maven			ant
+pom.xml			build.xml
+life cycle		no life cycle
+procedural		declareative
+plugins			no plugins
+no scripts 		scripts
+
+WHAT IF BUILD FAILS:
+1. CHECK JAVA VERSION FOR MAVEN
+2. CHECK POM.XML
+3. CHECK THE CODE
+
+
+
+
+apt install git maven tree openjdk-11-jdk -y
+
+root@ip-172-31-93-204:/home/ubuntu# mvn -v
+Apache Maven 3.6.3
+Maven home: /usr/share/maven
+Java version: 11.0.26, vendor: Ubuntu, runtime: /usr/lib/jvm/java-11-openjdk-amd64
+Default locale: en, platform encoding: UTF-8
+OS name: "linux", version: "6.8.0-1024-aws", arch: "amd64", family: "unix"
+
+
+root@ip-172-31-93-204:/home/ubuntu# java --version
+openjdk 11.0.26 2025-01-21
+OpenJDK Runtime Environment (build 11.0.26+4-post-Ubuntu-1ubuntu122.04)
+OpenJDK 64-Bit Server VM (build 11.0.26+4-post-Ubuntu-1ubuntu122.04, mixed mode, sharing)
+
+root@ip-172-31-93-204:/home/ubuntu# git --version
+git version 2.34.1
+
+
+git clone https://github.com/devopsbyraham/jenkins-java-project.git
+cd jenkins-java-project.git
+
+Modify the POM.xml --file for build on java 11
+
+<build>
+  <plugins>
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-compiler-plugin</artifactId>
+      <version>3.8.1</version> <!-- Update plugin version if needed -->
+      <configuration>
+        <source>11</source>  <!-- Or use 1.8, 17 based on your JDK -->
+        <target>11</target>
+      </configuration>
+    </plugin>
+  </plugins>
+</build>
+
+"some plggins added in this file"
+
+then run the command
+ 
+mvn clean package
+
+	
